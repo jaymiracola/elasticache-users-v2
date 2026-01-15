@@ -1,0 +1,21 @@
+apiVersion: meta.dev.upbound.io/v2alpha1
+kind: Project
+metadata:
+  name: elasticache-users-v2
+spec:
+  dependsOn:
+  - apiVersion: pkg.crossplane.io/v1
+    kind: Provider
+    package: xpkg.upbound.io/upbound/provider-aws-elasticache
+    version: v2.3.0
+  - apiVersion: pkg.crossplane.io/v1
+    kind: Function
+    package: xpkg.upbound.io/crossplane-contrib/function-auto-ready
+    version: '>=v0.0.0'
+  description: ElastiCache user management with v2
+  license: Apache-2.0
+  maintainer: Upbound User <user@example.com>
+  readme: |
+    Pass user context to usergroup via function
+  repository: xpkg.upbound.io/upbound-demo/elasticache-users-v2
+  source: github.com/upbound/project-template

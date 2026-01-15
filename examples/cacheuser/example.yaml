@@ -1,0 +1,9 @@
+apiVersion: customer.upbound.io/v1alpha1
+kind: XCacheUser
+metadata:
+  name: alice-v2
+  namespace: default
+spec:
+  parameters:
+    region: us-east-2
+    username: alice

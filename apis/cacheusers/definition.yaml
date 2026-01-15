@@ -1,0 +1,43 @@
+apiVersion: apiextensions.crossplane.io/v2
+kind: CompositeResourceDefinition
+metadata:
+  name: xcacheusers.customer.upbound.io
+spec:
+  group: customer.upbound.io
+  names:
+    categories:
+    - crossplane
+    kind: XCacheUser
+    plural: xcacheusers
+  # Namespace-scoped XR (v2 pattern with namespace-scoped MRs)
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    referenceable: true
+    schema:
+      openAPIV3Schema:
+        description: XCacheUser creates ElastiCache User with limited access that automatically joins UserGroup.
+        properties:
+          spec:
+            description: XCacheUserSpec defines the desired state of XCacheUser.
+            properties:
+              parameters:
+                properties:
+                  region:
+                    description: AWS region (must match UserGroup region)
+                    type: string
+                    default: us-east-1
+                  username:
+                    description: Username for ElastiCache access
+                    type: string
+                required:
+                - username
+                type: object
+            type: object
+          status:
+            description: XCacheUserStatus defines the observed state of XCacheUser.
+            type: object
+        required:
+        - spec
+        type: object
+    served: true

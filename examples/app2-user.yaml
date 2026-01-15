@@ -1,0 +1,9 @@
+apiVersion: customer.upbound.io/v1alpha1
+kind: XCacheUser
+metadata:
+  name: app2
+  namespace: app2
+spec:
+  parameters:
+    region: us-east-2
+    username: app2

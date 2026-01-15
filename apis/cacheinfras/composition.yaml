@@ -1,0 +1,25 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: xcacheinfras.customer.upbound.io
+spec:
+  compositeTypeRef:
+    apiVersion: customer.upbound.io/v1alpha1
+    kind: XCacheInfra
+  mode: Pipeline
+  pipeline:
+  - functionRef:
+      name: upbound-demo-elasticache-users-v2usergroup-manager
+    step: usergroup-manager
+    credentials:
+    - name: aws
+      source: Secret
+      secretRef:
+        name: aws-secret
+        namespace: default
+  - functionRef:
+      name: upbound-demo-elasticache-users-v2cacheinfra
+    step: cacheinfra
+  - functionRef:
+      name: crossplane-contrib-function-auto-ready
+    step: crossplane-contrib-function-auto-ready

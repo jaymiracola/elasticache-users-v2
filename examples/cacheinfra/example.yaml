@@ -1,0 +1,8 @@
+apiVersion: customer.upbound.io/v1alpha1
+kind: XCacheInfra
+metadata:
+  name: example-v2
+  namespace: default
+spec:
+  parameters:
+    region: us-east-2

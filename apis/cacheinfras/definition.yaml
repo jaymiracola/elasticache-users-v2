@@ -1,0 +1,38 @@
+apiVersion: apiextensions.crossplane.io/v2
+kind: CompositeResourceDefinition
+metadata:
+  name: xcacheinfras.customer.upbound.io
+spec:
+  group: customer.upbound.io
+  names:
+    categories:
+    - crossplane
+    kind: XCacheInfra
+    plural: xcacheinfras
+  # Namespace-scoped XR (v2 pattern with namespace-scoped MRs)
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    referenceable: true
+    schema:
+      openAPIV3Schema:
+        description: XCacheInfra creates ElastiCache ServerlessCache with UserGroup for dynamic user management.
+        properties:
+          spec:
+            description: XCacheInfraSpec defines the desired state of XCacheInfra.
+            properties:
+              parameters:
+                properties:
+                  region:
+                    description: AWS region for ElastiCache resources
+                    type: string
+                    default: us-east-1
+                type: object
+            type: object
+          status:
+            description: XCacheInfraStatus defines the observed state of XCacheInfra.
+            type: object
+        required:
+        - spec
+        type: object
+    served: true
